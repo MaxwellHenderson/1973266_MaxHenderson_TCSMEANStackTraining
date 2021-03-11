@@ -1,0 +1,23 @@
+div{
+    padding: 20px;
+    border: solid blue 3px;
+    margin: 10px;
+    width: fit-content;
+    height: fit-content;
+    float: left;
+}
+
+#d1{
+    -webkit-transition: width 20s,height 20s;
+    /* -moz-transition: all;
+    -moz-transition: width 20s,height 20s; */
+}
+#d1:hover{
+    widows: 200px;
+    height: 250px;
+}
+
+div:hover{
+    width: 100px;
+    height: 100px;
+}

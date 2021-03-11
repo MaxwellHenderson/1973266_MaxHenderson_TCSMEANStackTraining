@@ -1,0 +1,13 @@
+Max Henderson
+1973266
+
+Git Repo Link
+https://github.com/MaxwellHenderson/EmpId_YourName_TCSMEANStackTraining
+
+Changes
+
+3/9/2021
+
+1. Created test file with name and employee id
+2. Created ChangeLog.txt to track changes, and added to .gitignore
+3. Created angular-app folder

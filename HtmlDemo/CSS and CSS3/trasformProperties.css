@@ -1,0 +1,23 @@
+div{
+    padding: 20px;
+    margin: 50px;
+    border: solid black 3px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#d1 {
+    transform: translateY(30px);
+}
+
+#d2 {
+    transform: rotateY(50deg) rotateY(30deg);
+}
+
+#d3{
+    transform: skewX(27deg);
+    transform: skewY(30deg);
+}
+#d4{
+    transform: scale(-2);
+}
