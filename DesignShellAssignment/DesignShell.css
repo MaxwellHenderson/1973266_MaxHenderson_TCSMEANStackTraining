@@ -1,3 +1,22 @@
-.navbar{
-    border: solid blue 5px;
-}
+.para {
+    background-color: blue;
+  }
+  .navbar {
+    border: solid black 2px;
+    max-width: 80%;
+    float: top;
+  }
+  .navlink{
+    border: red solid 1px;
+    margin: 2px;
+  }
+  .sidebar {
+    margin: auto;
+  }
+  .content {
+    margin: auto;
+  }
+  .footer {
+    margin: auto;
+  }
+  
