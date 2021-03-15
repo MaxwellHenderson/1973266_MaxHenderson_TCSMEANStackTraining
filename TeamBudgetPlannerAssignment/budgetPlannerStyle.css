@@ -1,0 +1,8 @@
+.page{
+    max-width: 900px;
+    margin: auto;
+    border: black 10px solid;    
+}
+.header{
+    text-align: center;
+}
