@@ -6,13 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Budget</title>
     <link rel="stylesheet" href="budgetPlannerStyle.css">
+    <script src="programManager.js"></script>
 </head>
-<body>
+<body class="page">
     <div class="header">
         <h1 class = "header">
             Add New Budget
         </h1>
     </div>
+    <div class="container">
+        <form class="budgetForm">
+            <div>
+                <label for="clientName", class="formLabel">Client Name </label>
+                <input type="text", name="clientName", class="formInput">
+            </div>
+            <br>
+            <div>
+                <label for="projectName" class="formLabel">Project Name </label>
+                <input type="text", name="projectName", class="formInput">
+            </div>
+            <br>
+            <div>
+                <label for="budget" class="formLabel">Budget </label>
+                <input type="text" name="budget", class="formInput">
+            </div>
+            <input type="button", onclick="addFormInfo()", value="Add Item">
+            <input type="reset", value="Clear">
+        </form>
+    </div>
+    <a href="index.html">Back</a>
     
 </body>
 </html>

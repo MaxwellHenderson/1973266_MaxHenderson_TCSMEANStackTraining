@@ -1,8 +1,41 @@
-.page{
-    max-width: 900px;
-    margin: auto;
-    border: black 10px solid;    
+.page {
+  max-width: 900px;
+  margin: auto;
+  border: black 10px solid;
+  text-align: center;
 }
-.header{
-    text-align: center;
+.header {
+  text-align: center;
+}
+form div {
+  justify-self: left;
+  max-width: 80%;
+}
+.budgetForm {
+  text-align: center;
+}
+.container {
+  max-width: 500px;
+  text-align: center;
+}
+.formLabel {
+  max-width: 30%;
+  /* margin: auto;
+  float: left; */
+}
+.formInput {
+  max-width: 70%;
+  margin: auto;
+  float: right;
+}
+table {
+  border: black solid 2px;
+}
+th {
+  border: black solid 1px;
+  color: purple;
+}
+
+td {
+  border: grey 1px solid;
 }
