@@ -1,0 +1,18 @@
+/* All that is here is some simple overrides for Bootstrap classes */
+
+.card-body{
+    max-height: 15em;
+}
+.border{
+    border-width: 3px !important;
+}
+.blogContainer > .card {
+    margin: 2px;
+}
+.btn-warning{
+    background-color: red;
+    font-size: large;
+}
+.card:hover{
+    transform: scale(1.1);
+}
