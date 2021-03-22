@@ -1,0 +1,11 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs"
+    },
+    "files": [
+        "cart.ts",
+        "itemCard.ts",
+        "store.ts",
+    ],
+}
