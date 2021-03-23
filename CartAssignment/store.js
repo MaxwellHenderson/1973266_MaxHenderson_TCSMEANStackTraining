@@ -23,13 +23,23 @@ var storeItems = {
     }
 };
 var storeShelf = {};
+var cart = {};
 function addItemToCart(id) {
-    console.log("adding qty");
+    //Update state of current store
     storeShelf[id].addQty();
-    console.log(storeShelf[id]);
-    console.log(storeItems);
+    //Update shopping cart info
+    console.log(cart[id]);
+    if (cart[id] == undefined) {
+        cart[id] = 1;
+    }
+    else {
+        cart[id] = cart[id] + 1;
+    }
+    //Save cart data
+    sessionStoreCart();
     render();
 }
+//Takes the values that are in the current state, and renders the cards
 function render() {
     var shelf = document.getElementById("shelf");
     shelf.innerHTML = "";
@@ -38,6 +48,9 @@ function render() {
     }
 }
 function sessionStoreCart() {
+    console.log("storing");
+    console.log(JSON.stringify(cart));
+    sessionStorage.setItem("cart", JSON.stringify(cart));
 }
 var ItemCard = /** @class */ (function () {
     function ItemCard(itemName, itemDescription, itemPrice, image, itemQty) {

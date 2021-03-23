@@ -24,9 +24,22 @@ let storeItems = {
 };
 
 let storeShelf = {}
+let cart = {}
 
 function addItemToCart(id: string) {
+    //Update state of current store
     storeShelf[id].addQty();
+
+    //Update shopping cart info
+    console.log(cart[id]);
+    if (cart[id] == undefined) {
+        cart[id] = 1
+    } else {
+        cart[id] = cart[id] + 1;
+    }
+
+    //Save cart data
+    sessionStoreCart()
     render()
 }
 
@@ -41,7 +54,9 @@ function render() {
 }
 
 function sessionStoreCart() {
-    
+    console.log("storing");
+    console.log(JSON.stringify(cart));
+    sessionStorage.setItem("cart", JSON.stringify(cart))
 }
 
 class ItemCard {
@@ -119,3 +134,4 @@ var initializePage = (function () {
     }
     render()
 })();
+

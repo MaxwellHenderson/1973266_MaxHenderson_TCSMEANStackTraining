@@ -1,0 +1,40 @@
+<div>
+    <h2 [style.color]="backgroundColor">Structure Directive</h2>
+    <input type="button" value="click to hide/shoe" (click)="showHide()">
+    <div *ngIf = "showFlag">
+        <h2>Welcome to structure directive code</h2>
+    </div>
+
+    <h3>Add Students Names are</h3>
+    <ol >
+        <li *ngFor = "let name of stdNames">{{name}}</li>
+    </ol>
+
+    <hr/>
+    SkillName: <input type="text" #sname name="" id="" (keyup.enter)="addSkillName(sname.value)">
+    <input type="button" value="" (click) = "addSkillName(sname.value)">
+    <br>
+    <ul>
+        <li *ngFor="let skill of skillNames">{{skill}}</li>
+    </ul>
+
+    <br>
+    <p>
+        Employee details is <br>
+        Id is {{emp.id}}, Name is {{emp.name}} and Salary is {{emp.salary}}
+    </p>
+
+    <br>
+    <table border = "1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Salary</th>
+        </tr>
+        <tr *ngFor="let emp of employees">
+            <td>{{emp.id}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.salary}}</td>
+        </tr>
+    </table>
+</div>
