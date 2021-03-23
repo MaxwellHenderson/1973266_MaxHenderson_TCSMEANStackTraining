@@ -22,7 +22,9 @@ var storeItems = {
         "itemQty": 0
     }
 };
+//Store shelf is what is currently being displayed on the screen and is used for the render function
 var storeShelf = {};
+//Cart represents the data that will be saved to localStorage
 var cart = {};
 function addItemToCart(id) {
     //Update state of current store
@@ -39,7 +41,7 @@ function addItemToCart(id) {
     sessionStoreCart();
     render();
 }
-//Takes the values that are in the current state, and renders the cards
+//Takes the values that are in the current state, and renders the cards using the saved ItemCard objects
 function render() {
     var shelf = document.getElementById("shelf");
     shelf.innerHTML = "";
@@ -52,6 +54,8 @@ function sessionStoreCart() {
     console.log(JSON.stringify(cart));
     sessionStorage.setItem("cart", JSON.stringify(cart));
 }
+//Creates an ItemCard object that contains information about the store item, as well as its DOM element
+//representation for the render function to use
 var ItemCard = /** @class */ (function () {
     function ItemCard(itemName, itemDescription, itemPrice, image, itemQty) {
         if (image === void 0) { image = "../images/missingImage.png"; }
@@ -63,6 +67,7 @@ var ItemCard = /** @class */ (function () {
         this.itemQty = itemQty;
         this.createItemCard();
     }
+    //Updates the ItemCard information
     ItemCard.prototype.addQty = function () {
         this.itemQty++;
         this.createItemCard();
@@ -99,13 +104,14 @@ var ItemCard = /** @class */ (function () {
     };
     return ItemCard;
 }());
+//This is called when the page loads. It loops through the JSON object of storeItems and creates a new
+//ItemCard for each of them, storing it for this page for the render() function to use, and then
+//calls the render() function.
 var initializePage = (function () {
-    var shelf = document.getElementById("shelf");
     for (var item in storeItems) {
         var itemDetails = storeItems[item];
         var itemCard = new ItemCard(itemDetails.title, itemDetails.description, itemDetails.price, itemDetails.imgUrl);
         storeShelf[itemCard.itemName] = itemCard;
-        // shelf.appendChild(itemCard.domElement)
     }
     render();
 })();

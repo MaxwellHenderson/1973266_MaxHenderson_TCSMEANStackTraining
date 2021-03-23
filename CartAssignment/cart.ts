@@ -24,31 +24,23 @@ let items = {
     }
 };
 
-
+//Used for the renderCart() function
 let cartItems = {}
 
 
-
-// function initializeCart() {
-//     cartItems = retrieveCart();
-//     renderCart();
-// }
-
-
+//Loops through the cartItems and creates CartItem objects, adding them to the DOM
+//Not the most efficient as it makes new objects every time
 function renderCart() {
     let cartContents = document.getElementById("cartContents")
     
     for (let item in cartItems) {
         let curItem = new CartItem(item, cartItems[item])
-        console.log("Current item");
-        console.log(curItem);
         cartContents.appendChild(curItem.domElement)
     }
 }
 
+//Retrieves the JSON of the cart items
 function retrieveCart(): Object{
-    console.log("retrieving");
-    console.log(JSON.parse(sessionStorage.getItem("cart")));
     return JSON.parse(sessionStorage.getItem("cart"))
 }
 
@@ -74,38 +66,12 @@ class CartItem {
         //Title element of card
         const ItemName = document.createElement("h5");
         ItemName.setAttribute("class", "mb-1");
-        console.log("setting title");
-        console.log(items);
-        console.log("id: "+this.id);
-        
-        console.log(items[this.id]);
-        console.log(items[this.id].title);
-        
-        
-        
         ItemName.innerHTML = items[this.id].title;
 
         //Body element of card
         const QtyPrice = document.createElement("small")
         QtyPrice.setAttribute("class", "card-body overflow-auto");
         QtyPrice.innerHTML = "Number of items: "+this.qty+" total: $"+this.price;
-
-        // //Image element of the card
-        // const Image = document.createElement("img");
-        // Image.setAttribute("class", "card-img-top img-fluid");
-        // Image.setAttribute("src", this.image)
-
-        // //Add item button
-        // const AddItemButton = document.createElement("button")
-        // AddItemButton.setAttribute("class", "btn btn-primary")
-        // AddItemButton.setAttribute("onclick", "addItemToCart(this.parentNode.id)")
-        // AddItemButton.innerHTML = "Add item to cart"
-
-        // //Footer to track qty in cart
-        // const ItemQuantity = document.createElement("div")
-        // ItemQuantity.setAttribute("class", "card-footer")
-        // ItemQuantity.innerHTML = this.itemQty.toString();
-
 
         //Append all elements to the post
         ele.append(ItemName, QtyPrice)

@@ -23,7 +23,9 @@ let storeItems = {
     }
 };
 
+//Store shelf is what is currently being displayed on the screen and is used for the render function
 let storeShelf = {}
+//Cart represents the data that will be saved to localStorage
 let cart = {}
 
 function addItemToCart(id: string) {
@@ -44,7 +46,7 @@ function addItemToCart(id: string) {
 }
 
 
-//Takes the values that are in the current state, and renders the cards
+//Takes the values that are in the current state, and renders the cards using the saved ItemCard objects
 function render() {
     const shelf = document.getElementById("shelf")
     shelf.innerHTML =""
@@ -59,6 +61,8 @@ function sessionStoreCart() {
     sessionStorage.setItem("cart", JSON.stringify(cart))
 }
 
+//Creates an ItemCard object that contains information about the store item, as well as its DOM element
+//representation for the render function to use
 class ItemCard {
     domElement: Element
 
@@ -79,6 +83,8 @@ class ItemCard {
         this.createItemCard()
     }
 
+
+    //Updates the ItemCard information
     addQty() {
         this.itemQty++;
         this.createItemCard();
@@ -124,13 +130,16 @@ class ItemCard {
 
     }
 }
+
+//This is called when the page loads. It loops through the JSON object of storeItems and creates a new
+//ItemCard for each of them, storing it for this page for the render() function to use, and then
+//calls the render() function.
 var initializePage = (function () {
-    const shelf = document.getElementById("shelf")
+
     for (let item in storeItems) {
         let itemDetails = storeItems[item]
         let itemCard = new ItemCard(itemDetails.title, itemDetails.description, itemDetails.price, itemDetails.imgUrl)
         storeShelf[itemCard.itemName] = itemCard
-        // shelf.appendChild(itemCard.domElement)
     }
     render()
 })();
