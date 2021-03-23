@@ -1,7 +1,11 @@
 {
-    "compileOnSave": true,
+    // "compileOnSave": true,
     "compilerOptions": {
-        "module": "commonjs"
+        "moduleResolution": "classic",
+        // "module": "es6",
+        // "target": "es5",
+        "esModuleInterop": true,
+        // "sourceMap": true
     },
     "files": [
         "cart.ts",

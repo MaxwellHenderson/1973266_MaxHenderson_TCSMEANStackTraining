@@ -2,11 +2,11 @@ export class ItemCard {
     elementData: Element;
 
     constructor(itemName: string, itemDescription: string, itemPrice: number, image: string = "../images/missingImage.png", itemQty: number = 0) {
-        this.elementData = createItemCard(itemName, itemQty, itemDescription, image)
+        this.elementData = createItemCard(itemName, itemDescription, itemPrice, image, itemQty)
     }
 }
 
-const createItemCard = (itemName: string, itemQty: number = 0, itemDescription: string, image: string = "../images/missingImage.png") => {
+export function createItemCard(itemName: string, itemDescription: string, itemPrice: number, image: string = "../images/missingImage.png", itemQty: number = 0){
     //Create the container div for the item
     const ItemCard = document.createElement("div");
     ItemCard.setAttribute("class", "card col-md-3");

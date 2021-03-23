@@ -1,4 +1,4 @@
-import { ItemCard } from './itemCard'
+import { ItemCard, createItemCard } from './itemCard'
 
 const storeItems = {
     "eggs": {
@@ -29,7 +29,7 @@ function intializeStoreFront() {
         console.log("adding item");
         
         let entry = storeItems[item]
-        let card = new ItemCard(entry.title, entry.description, entry.price, entry.imgUrl, 0)
-        itemContainer.appendChild(card.elementData)
+        let card = createItemCard(entry.title, entry.description, entry.price, entry.imgUrl, 0)
+        itemContainer.appendChild(card)
     }
 }

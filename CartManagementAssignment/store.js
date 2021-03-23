@@ -26,7 +26,7 @@ function intializeStoreFront() {
     for (var item in storeItems) {
         console.log("adding item");
         var entry = storeItems[item];
-        var card = new itemCard_1.ItemCard(entry.title, entry.description, entry.price, entry.imgUrl, 0);
-        itemContainer.appendChild(card.elementData);
+        var card = itemCard_1.createItemCard(entry.title, entry.description, entry.price, entry.imgUrl, 0);
+        itemContainer.appendChild(card);
     }
 }
