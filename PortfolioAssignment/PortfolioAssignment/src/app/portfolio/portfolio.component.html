@@ -1,0 +1,34 @@
+<head>
+    <title>My Portfolio</title>
+</head>
+
+<div id="porfolioComponent" class="container border">
+    <h1 class="text-center">My Portfolio</h1>
+    <div class="d-flex justify-content-between">
+        <div>Welcome {{username}}</div>
+        <a class="nav-link" (click)="logout()">Logout</a>
+    </div>
+    <form [formGroup]="contactRef" (ngSubmit)="addContactInfo()" class="form-group m-1">
+        <label for="contactName">Contact Name</label>
+        <input id="contactName" type="text" formControlName="contactName" class="form-control">
+        <label for="phoneNo">Phone No</label>
+        <input id="phoneNo" type="tel" formControlName="phoneNo" class="form-control">
+        <input type="submit" class="btn-primary" value="Add Contact">
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Phone No.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let contact of contacts">
+                <td class="text-truncate">{{contact.name}}</td>
+                <td class="text-truncate">{{contact.phoneNo}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

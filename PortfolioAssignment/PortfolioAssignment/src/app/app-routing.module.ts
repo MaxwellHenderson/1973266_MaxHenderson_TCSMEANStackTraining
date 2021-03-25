@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutusComponent } from './aboutus/aboutus.component';
-import { ContactusComponent } from './contactus/contactus.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
-  { path: 'aboutus', component: AboutusComponent },
-  { path: 'contactus', component: ContactusComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: DashboardComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'portfolio', component: PortfolioComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
