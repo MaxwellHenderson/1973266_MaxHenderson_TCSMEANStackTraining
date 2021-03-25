@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ContactDbService } from '../contact-db.service';
 import { Contact } from '../contact.model';
+import { LoginDbService } from '../login-db.service';
+import { UserListService } from '../user-list.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,41 +20,67 @@ export class SignupComponent implements OnInit {
 
   alertMessage: string = 'fine';
 
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    public userlist: UserListService,
+    public loginDB: LoginDbService,
+    public contactsDB: ContactDbService
+  ) {}
 
   ngOnInit(): void {}
 
+  //===========================================
+  //  Event functions
+  //===========================================
+
   submitUser() {
+    let username = this.signupRef.get('username')?.value;
+    let password = this.signupRef.get('password')?.value;
+    let confirmPassword = this.signupRef.get('confirmPassword')?.value;
+
     //Make sure passwords match
-    if (
-      this.signupRef.get('password')?.value !=
-      this.signupRef.get('confirmPassword')?.value
-    ) {
+    if (password != confirmPassword) {
       this.passwordMismatchError();
       return;
     }
 
     //Ensure username doesn't already exist
-    if (this.checkUserExists(this.signupRef.get('username')?.value)) {
+    if (this.checkUserExists(username)) {
       this.userExistsError();
       return;
     }
 
-    //Create the user, put it into localStorage, then return to login
-    let user = {
-      username: this.signupRef.get('username')?.value,
-      password: this.signupRef.get('password')?.value,
-    };
-    console.log(user);
-    localStorage.setItem(user.username, JSON.stringify(user));
-    this.createUserContacts(user.username);
+    //Add user to the loing database using the service
+    this.loginDB.addUser(username, password);
+
+    //Creates and adds empty contact list for users portfolio
+    this.createUserContacts(username);
     this.navigateToLogin();
   }
 
+  //===========================================
+  //  Helper functions
+  //===========================================
+
+  //checks if the user already exists
   checkUserExists(username: string): boolean {
-    if (sessionStorage.getItem(username) == null) return false;
-    return true;
+    return this.userlist.getUser(username);
   }
+
+  //Creates an entry in localStorage to store the contacts from the portfolio
+  createUserContacts(username: string) {
+    let savedContacts: Array<Contact> = new Array();
+    this.contactsDB.setContactList(username, savedContacts);
+  }
+
+  //calls the router
+  navigateToLogin() {
+    this.router.navigate(['']);
+  }
+
+  //===========================================
+  //  Error message functions
+  //===========================================
 
   passwordMismatchError() {
     this.alertMessage = 'The passwords do not match';
@@ -63,30 +92,5 @@ export class SignupComponent implements OnInit {
     this.alertMessage = 'That username is already in use';
     document.getElementById('passwordMismatchAlert')!.style.visibility =
       'visible';
-  }
-
-  //Creates an entry in localStorage to store the contacts from the portfolio
-  createUserContacts(username: string) {
-    debugger;
-    let savedContacts: Array<Contact> = new Array();
-    let contactsDB = localStorage.getItem('contactsDB');
-    //If the saved contacts database does not exist, create it, add the first user with
-    //their new empty contacts list and save to local storage
-    //Else, parse the retrieved database, add the new user with the new empty contacts
-    //list and save back to local storage
-    if (contactsDB == null) {
-      debugger;
-      let newDB: any = {};
-      newDB[username] = savedContacts;
-      localStorage.setItem('contactsDB', JSON.stringify(newDB));
-    } else {
-      let contactsDBParsed = JSON.parse(contactsDB);
-      contactsDBParsed[username] = savedContacts;
-      localStorage.setItem('contactsDB', JSON.stringify(contactsDB));
-    }
-  }
-
-  navigateToLogin() {
-    this.router.navigate(['']);
   }
 }

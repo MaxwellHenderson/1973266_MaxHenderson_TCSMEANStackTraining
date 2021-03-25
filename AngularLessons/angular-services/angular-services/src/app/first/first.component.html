@@ -1,2 +1,14 @@
-<input type="button" value="Comp 1 call service without DI" (click)="fun1()">
-{{msg}}
+<div>
+    <input type="button" class="button btn-primary" value="Comp 1 call service without DI" (click)="fun1()">
+    {{msg}}
+</div>
+<br>
+<div>
+    <input type="button" class="button btn-primary" value="Comp 1 call service with DI" (click)="display()">
+    {{msg2}}
+</div>
+
+<div>
+    <input type="button" class="button btn-primary" value="Get Fake Data" (click)="callFakeService()">
+    {{msg3}}
+</div>

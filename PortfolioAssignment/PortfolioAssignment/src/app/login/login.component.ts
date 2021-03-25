@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginDbService } from '../login-db.service';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,13 @@ export class LoginComponent implements OnInit {
 
   alertMessage: string = '';
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, public loginService: LoginDbService) {}
 
   ngOnInit(): void {}
+
+  //===========================================
+  //  Event functions
+  //===========================================
 
   attemptLogin() {
     if (this.checkUser()) {
@@ -27,34 +32,35 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //===========================================
+  //  Helper functions
+  //===========================================
+
   checkUser(): boolean {
-    let user = JSON.parse(
-      localStorage.getItem(this.loginRef.get('username')!.value)!
-    );
-    if (user == null) return false;
-
-    if (
-      user.username != this.loginRef.get('username')?.value ||
-      user.password != this.loginRef.get('password')?.value
-    )
-      return false;
-
-    return true;
+    let username: string = this.loginRef.get('username')!.value;
+    let password: string = this.loginRef.get('password')!.value;
+    return this.loginService.verifyUser(username, password);
   }
 
-  loginFail() {
-    console.log('fail');
-
-    this.alertMessage = 'Username or password is incorrect';
-    document.getElementById('loginFailAlert')!.style.visibility = 'visible';
-  }
+  //===========================================
+  //  Router functions
+  //===========================================
 
   login() {
-    sessionStorage.setItem('currentUser', this.loginRef.get('username')?.value);
+    sessionStorage.setItem('loginToken', this.loginRef.get('username')?.value);
     this.router.navigate(['portfolio']);
   }
   signup() {
-    console.log('signup');
     this.router.navigate(['signup']);
+  }
+
+  //===========================================
+  //  Error message functions
+  //===========================================
+
+  loginFail() {
+    console.log('fail');
+    this.alertMessage = 'Username or password is incorrect';
+    document.getElementById('loginFailAlert')!.style.visibility = 'visible';
   }
 }

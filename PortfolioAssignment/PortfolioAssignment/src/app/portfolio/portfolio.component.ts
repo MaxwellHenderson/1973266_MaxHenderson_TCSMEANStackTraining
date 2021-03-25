@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ContactDbService } from '../contact-db.service';
 import { Contact } from '../contact.model';
 
 @Component({
@@ -18,16 +19,17 @@ export class PortfolioComponent implements OnInit {
 
   contacts: Array<Contact> = new Array();
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, public contactDB: ContactDbService) {}
 
   ngOnInit(): void {
-    debugger;
-    this.username = sessionStorage.getItem('currentUser')!;
+    this.username = sessionStorage.getItem('loginToken')!;
     //Retrieves the saved contact list
-    let storage: string = localStorage.getItem('contactsDB')!;
-    let parsed = JSON.parse(storage);
-    this.contacts = parsed[this.username];
+    this.contacts = this.contactDB.getContactList(this.username);
   }
+
+  //===========================================
+  //  Event functions
+  //===========================================
 
   addContactInfo() {
     let name: string = this.contactRef.get('contactName')?.value;
@@ -37,11 +39,17 @@ export class PortfolioComponent implements OnInit {
     this.saveContactInfo();
   }
 
+  //===========================================
+  //  Helper functions
+  //===========================================
+
   saveContactInfo() {
-    let contactsDB = JSON.parse(localStorage.getItem('contactsDB')!);
-    contactsDB[this.username] = this.contacts;
-    localStorage.setItem('contactsDB', JSON.stringify(contactsDB));
+    this.contactDB.setContactList(this.username, this.contacts);
   }
+
+  //===========================================
+  //  Router functions
+  //===========================================
 
   logout() {
     console.log('logged out');

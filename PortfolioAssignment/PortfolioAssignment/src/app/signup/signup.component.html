@@ -1,4 +1,6 @@
 <div class="container" name="signupComponent">
+    <h1>Signup Page</h1>
+
     <form [formGroup]="signupRef" (ngSubmit)="submitUser()" class="form-group m-1">
         <label for="username">Username</label>
         <input id="username" type="text" formControlName="username" class="form-control">
