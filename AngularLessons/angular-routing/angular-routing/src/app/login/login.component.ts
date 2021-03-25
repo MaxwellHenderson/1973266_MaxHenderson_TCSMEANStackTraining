@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   homePage() {
+    //Want to get a unique token
+    //Session ID or JWT (JSON web token)
+    sessionStorage.setItem('token', '123');
     this.router.navigate(['home']);
   }
 }
