@@ -7,9 +7,10 @@ import { FakeService } from './fake.service';
 import { FirstComponent } from './first/first.component';
 import { SecondComponent } from './second/second.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeDisplayComponent } from './employee-display/employee-display.component';
 
 @NgModule({
-  declarations: [AppComponent, FirstComponent, SecondComponent],
+  declarations: [AppComponent, FirstComponent, SecondComponent, EmployeeDisplayComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [FakeService],
   bootstrap: [AppComponent],

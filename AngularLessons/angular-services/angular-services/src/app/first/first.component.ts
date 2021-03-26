@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Fake } from '../fake.model';
 import { FakeService } from '../fake.service';
 import { MyService } from '../mycustom.service';
 
@@ -15,7 +16,11 @@ export class FirstComponent implements OnInit {
 
   constructor(public serviceName: FakeService) {} //Passing in FakeService is DI: pulling the object from the container
 
-  ngOnInit(): void {}
+  fakeData: Array<Fake> = [];
+
+  ngOnInit(): void {
+    this.serviceName.loadFakeData().subscribe((data) => (this.fakeData = data));
+  }
 
   fun1() {
     let obj = new MyService();
@@ -26,9 +31,5 @@ export class FirstComponent implements OnInit {
   display() {
     if (this.msg2 == '') this.msg2 = this.serviceName.sayHello();
     else this.msg2 = '';
-  }
-
-  callFakeService() {
-    this.serviceName.loadFakeData();
   }
 }

@@ -1,0 +1,8 @@
+[
+    {"id":100,"name":"Max","salary":73000},
+    {"id":101,"name":"Zoe","salary":83000},
+    {"id":102,"name":"Zack","salary":93000},
+    {"id":103,"name":"Kari","salary":103000},
+    {"id":104,"name":"Deb","salary":113000},
+    {"id":105,"name":"Dan","salary":123000}
+]

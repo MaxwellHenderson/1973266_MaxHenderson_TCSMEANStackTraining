@@ -8,7 +8,22 @@
     {{msg2}}
 </div>
 
-<div>
+<!-- <div>
     <input type="button" class="button btn-primary" value="Get Fake Data" (click)="callFakeService()">
     {{msg3}}
-</div>
+</div> -->
+
+<table>
+    <tr>
+        <th>UserId</th>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Completed</th>
+    </tr>
+    <tr *ngFor="let data of fakeData" class="table table-striped">
+        <td>{{data.userId}}</td>
+        <td>{{data.id}}</td>
+        <td>{{data.title}}</td>
+        <td>{{data.completed}}</td>
+    </tr>
+</table>
