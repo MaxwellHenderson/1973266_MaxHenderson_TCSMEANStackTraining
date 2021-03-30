@@ -10,6 +10,7 @@ import { QuestionsService } from '../questions.service';
   styleUrls: ['./test.component.css'],
 })
 export class TestComponent implements OnInit {
+  isLoaded: boolean = false;
   questionsList: any = [];
   result: any;
   formArray: FormArray = new FormArray([]);
@@ -28,16 +29,17 @@ export class TestComponent implements OnInit {
     //Build formGroups from saved data
     this.questions.getQuestions().subscribe((data) => {
       console.log(data);
-
+      let groupArray: FormGroup[] = new Array();
       data.forEach((questionValue: { question: any }) => {
-        this.formArray.push(this.addQuestion());
+        this.addQuestion();
+        // groupArray.push(this.addQuestion() as FormGroup);
       });
+      // this.formArray = this.formBuilder.array(groupArray);
     });
     this.questions.getQuestions().subscribe((data) => {
       this.questionsList = data;
       // this.buildFormArray(data.valueOf());
     });
-
     // this.intializeQuestionsList();
   }
 
@@ -56,14 +58,18 @@ export class TestComponent implements OnInit {
   }
 
   addQuestion(): FormGroup {
-    return this.formBuilder.group({
-      question: new FormControl(),
-      option1: new FormControl(),
-      option2: new FormControl(),
-      option3: new FormControl(),
-      option4: new FormControl(),
-      correctAnswer: new FormControl(),
+    const group = new FormGroup({
+      question: new FormControl(''),
+      option1: new FormControl(''),
+      option2: new FormControl(''),
+      option3: new FormControl(''),
+      option4: new FormControl(''),
+      correctAnswer: new FormControl(''),
     });
+    // return this.formBuilder.group({
+    // });
+    this.formArray.push(group);
+    return group;
   }
 
   checkQuestions() {
