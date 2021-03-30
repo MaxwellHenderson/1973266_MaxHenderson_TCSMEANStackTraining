@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent implements OnInit {
-  constructor() {}
+  constructor(public employeeService: EmployeeService) {}
 
   ngOnInit(): void {}
   storeUser(empRef: any) {
     console.log(empRef);
+    this.employeeService.storeEmployee(empRef);
   }
 }

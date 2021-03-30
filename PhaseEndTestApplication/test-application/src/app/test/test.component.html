@@ -1,0 +1,44 @@
+<h1>This is your test</h1>
+<button type="submit" (click)="checkQuestions()">Check your answers</button>
+<div>
+    <form [formGroup]="formRef">
+        <div>
+            <div formArrayName="formArray" class="container" *ngFor="let entry of questionsList; index as i">
+                <div [formGroupName]="i">
+                    <input type="radio" value="option1" [formControlName]="option1" />
+                    <input type="radio" value="option2" [formControlName]="option2" />
+                    <input type="radio" value="option3" [formControlName]="option3" />
+                    <input type="radio" value="option4" [formControlName]="option4" />
+
+                </div>
+
+
+
+
+                <!-- <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{entry.question}}</h4>
+
+                        <div>
+                            <input type="radio" value="option1" [formControlName]="entry.question" />
+                            <label>{{entry.option1}}</label>
+                        </div>
+                        <div>
+                            <input type="radio" value="option2" [formControlName]="entry.question" />
+                            <label>{{entry.option2}}</label>
+                        </div>
+                        <div>
+                            <input type="radio" value="option3" [formControlName]="entry.question" />
+                            <label>{{entry.option3}}</label>
+                        </div>
+                        <div>
+                            <input type="radio" value="option4" [formControlName]="entry.question" />
+                            <label>{{entry.option4}}</label>
+                        </div>
+
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </form>
+</div>
