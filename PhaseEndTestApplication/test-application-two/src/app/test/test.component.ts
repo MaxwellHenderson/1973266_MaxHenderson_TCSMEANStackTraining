@@ -13,32 +13,6 @@ export class TestComponent implements OnInit {
   score: string = '';
 
   questionsList: any = [];
-  // questionsList = [
-  //   {
-  //     question: 'What color is the sky?',
-  //     option1: 'Red',
-  //     option2: 'Blue',
-  //     option3: 'Green',
-  //     option4: 'Pink',
-  //     correctAnswer: 'option2',
-  //   },
-  //   {
-  //     question: 'What color is the ocean?',
-  //     option1: 'Red',
-  //     option2: 'Blue',
-  //     option3: 'Green',
-  //     option4: 'Pink',
-  //     correctAnswer: 'option2',
-  //   },
-  //   {
-  //     question: 'How many fingers do most people have?',
-  //     option1: '2',
-  //     option2: '4',
-  //     option3: '20',
-  //     option4: '10',
-  //     correctAnswer: 'option4',
-  //   },
-  // ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,7 +23,7 @@ export class TestComponent implements OnInit {
     this.formHolder = this.formBuilder.group({
       questions: this.formBuilder.array([]),
     });
-    // debugger;
+
     let questionsObservable = this.questionsGetter.getQuestions();
     questionsObservable.subscribe((data) => {
       data.forEach((value) => this.questionsList.push(value));
@@ -59,8 +33,6 @@ export class TestComponent implements OnInit {
     });
     console.log('Questions list');
     console.log(this.questionsList);
-
-    // this.addAllQuestions();
   }
 
   addAllQuestions(): void {
@@ -77,18 +49,18 @@ export class TestComponent implements OnInit {
   createQuestion(index: number): FormGroup {
     let questionTitle = 'question' + index;
     return this.formBuilder.group({
-      question: ['', Validators.required],
+      [questionTitle]: [''],
     });
   }
 
   checkAnswers() {
-    // debugger;
     let totalScore = 0;
     let maxScore = 0;
     this.questions.controls.forEach((control, index) => {
-      // debugger;
+      // let chosenAnswer = 'option1';
       let chosenAnswer = control.value.question;
       let correctAnswer = this.questionsList[index].correctAnswer;
+
       if (chosenAnswer == correctAnswer) {
         //Tag correct answer
         let element: HTMLElement = document.getElementById(

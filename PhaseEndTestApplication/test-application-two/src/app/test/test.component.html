@@ -11,34 +11,30 @@
                     <div [formGroupName]="i">
                         <div class="form-check">
                             <label for="{{'option'+i}}">{{questionsList[i].option1}}</label>
-                            <input class="form-check-input" formControlName="question" name="question" type="radio"
-                                id="{{'option1'+i}}">
+                            <input class="form-check-input" formControlName="{{'question'+i}}" name="{{'question'+i}}"
+                                type="radio" value="option1" id="{{'option'+i}}">
                             <span id="{{'question'+i+'option1'}}"></span>
                         </div>
                         <div class="form-check">
                             <label for="{{'option'+i}}">{{questionsList[i].option2}}</label>
-                            <input class="form-check-input" formControlName="question" name="question" value="option2"
-                                type="radio" id="{{'option2'+i}}">
+                            <input class="form-check-input" formControlName="{{'question'+i}}" name="{{'question'+i}}"
+                                type="radio" value="option2" id="{{'option'+i}}">
                             <span id="{{'question'+i+'option2'}}"></span>
                         </div>
 
                         <div class="form-check">
                             <label for="{{'option'+i}}">{{questionsList[i].option3}}</label>
-                            <input class="form-check-input" formControlName="question" name="question" value="option3"
-                                type="radio" id="{{'option3'+i}}">
+                            <input class="form-check-input" formControlName="{{'question'+i}}" name="{{'question'+i}}"
+                                type="radio" value="option3" id="{{'option'+i}}">
                             <span id="{{'question'+i+'option3'}}"></span>
                         </div>
 
                         <div class="form-check">
                             <label for="{{'option'+i}}">{{questionsList[i].option4}}</label>
-                            <input class="form-check-input" formControlName="question" name="question" value="option4"
-                                type="radio" id="{{'option4'+i}}">
+                            <input class="form-check-input" formControlName="{{'question'+i}}" name="{{'question'+i}}"
+                                type="radio" value="option4" id="{{'option'+i}}">
                             <span id="{{'question'+i+'option4'}}"></span>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
