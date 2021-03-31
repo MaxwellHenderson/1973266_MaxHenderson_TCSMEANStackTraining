@@ -10,37 +10,52 @@ import { QuestionsService } from '../questions.service';
   styleUrls: ['./test.component.css'],
 })
 export class TestComponent implements OnInit {
+  questionJSON = {
+    questions: [
+      {
+        question: 'What color is the sky?',
+        option1: 'Red',
+        option2: 'Blue',
+        option3: 'Green',
+        option4: 'Pink',
+        correctAnswer: 'option1',
+      },
+      {
+        question: 'What color is the ocean?',
+        option1: 'Red',
+        option2: 'Blue',
+        option3: 'Green',
+        option4: 'Pink',
+        correctAnswer: 'option2',
+      },
+    ],
+  };
   isLoaded: boolean = false;
   questionsList: any = [];
   result: any;
   formArray: FormArray = new FormArray([]);
-  formRef: FormGroup = new FormGroup({
-    formArray: this.formArray,
-  });
+  formRef: FormGroup = new FormGroup({});
   constructor(
     public questions: QuestionsService,
     private formBuilder: FormBuilder
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    console.log('Initing');
-    this.formArray = this.formBuilder.array([]);
+  ngOnInit(): void {
+    debugger;
+    this.formRef = this.formBuilder.group({
+      questions: this.formBuilder.array([this.addQuestion()]),
+    });
 
-    //Build formGroups from saved data
-    this.questions.getQuestions().subscribe((data) => {
-      console.log(data);
-      let groupArray: FormGroup[] = new Array();
-      data.forEach((questionValue: { question: any }) => {
-        this.addQuestion();
-        // groupArray.push(this.addQuestion() as FormGroup);
-      });
-      // this.formArray = this.formBuilder.array(groupArray);
-    });
-    this.questions.getQuestions().subscribe((data) => {
-      this.questionsList = data;
-      // this.buildFormArray(data.valueOf());
-    });
-    // this.intializeQuestionsList();
+    this.addAllQuestions();
+
+    // this.formArray = this.formRef.get('questions') as FormArray;
+    // this.questionJSON.questions.forEach(() => {
+    //   this.addQuestion();
+    // });
+
+    console.log('Initing');
+    // let groupArray: FormGroup[] = new Array();
+    debugger;
   }
 
   buildFormArray(questionsArray: any) {
@@ -57,8 +72,15 @@ export class TestComponent implements OnInit {
     });
   }
 
+  addAllQuestions(): void {
+    this.formArray = this.formRef.get('questions') as FormArray;
+    this.questionJSON.questions.forEach(() => {
+      (<FormArray>this.formRef.get('questions')).push(this.addQuestion());
+    });
+  }
+
   addQuestion(): FormGroup {
-    const group = new FormGroup({
+    return this.formBuilder.group({
       question: new FormControl(''),
       option1: new FormControl(''),
       option2: new FormControl(''),
@@ -66,10 +88,18 @@ export class TestComponent implements OnInit {
       option4: new FormControl(''),
       correctAnswer: new FormControl(''),
     });
-    // return this.formBuilder.group({
+    // const group = new FormGroup({
+    //   question: new FormControl(''),
+    //   option1: new FormControl(''),
+    //   option2: new FormControl(''),
+    //   option3: new FormControl(''),
+    //   option4: new FormControl(''),
+    //   correctAnswer: new FormControl(''),
     // });
-    this.formArray.push(group);
-    return group;
+    // // return this.formBuilder.group({
+    // // });
+    // this.formArray.push(group);
+    // return group;
   }
 
   checkQuestions() {

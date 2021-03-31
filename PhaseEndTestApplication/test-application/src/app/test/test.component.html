@@ -1,17 +1,17 @@
 <h1>This is your test</h1>
 <button type="submit" (click)="checkQuestions()">Check your answers</button>
 <div>
-    <form>
-        <div *ngIf="isLoaded">
-            <div *ngFor='let question of formArray.controls;'>
-                <!-- <div formArrayName="formArray" class="container" *ngFor="let entry of questionsList; index as i"> -->
-                {{question}}
-                <ng-container [formGroup]="question">
+    <form [formGroup]='formRef'>
+        <div>
+            <div formArrayName='questions'
+                *ngFor="let question of formRef.get<FormGroup>('questions')['controls']; let i = index">
+                Question
+                <!-- <ng-container [formGroupName]="i">
                     <input type="radio" value="option1" formControlName="option1" />
                     <input type="radio" value="option2" formControlName="option2" />
                     <input type="radio" value="option3" formControlName="option3" />
                     <input type="radio" value="option4" formControlName="option4" />
-                </ng-container>
+                </ng-container> -->
 
 
 

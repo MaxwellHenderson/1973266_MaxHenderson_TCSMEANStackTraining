@@ -1,0 +1,85 @@
+{
+    "questions":
+    [
+        {
+            "question":"What color is the sky?",
+            "option1":"Red",
+            "option2":"Blue",
+            "option3":"Green",
+            "option4":"Pink",
+            "correctAnswer":"option1"
+        },
+        {
+            "question":"What color is the ocean?",
+            "option1":"Red",
+            "option2":"Blue",
+            "option3":"Green",
+            "option4":"Pink",
+            "correctAnswer":"option2"
+        },
+        {
+            "question":"What color are leaves?",
+            "option1":"Red",
+            "option2":"Blue",
+            "option3":"Green",
+            "option4":"Pink",
+            "correctAnswer":"option2"
+        },
+        {
+            "question":"How many fingers do most people have?",
+            "option1":"2",
+            "option2":"4",
+            "option3":"20",
+            "option4":"10",
+            "correctAnswer":"option4"
+        },
+        {
+            "question":"How many eyes do most people have?",
+            "option1":"2",
+            "option2":"4",
+            "option3":"20",
+            "option4":"10",
+            "correctAnswer":"option1"
+        },
+        {
+            "question":"What kind of animal is a dog?",
+            "option1":"Reptile",
+            "option2":"Fish",
+            "option3":"Mammal",
+            "option4":"Bird",
+            "correctAnswer":"option3"
+        },
+        {
+            "question":"How many continents are there?",
+            "option1":"1",
+            "option2":"3",
+            "option3":"7",
+            "option4":"9",
+            "correctAnswer":"option3"
+        },
+        {
+            "question":"How many moons does Earth have?",
+            "option1":"1",
+            "option2":"3",
+            "option3":"6",
+            "option4":"9",
+            "correctAnswer":"option1"
+        },
+        {
+            "question":"What is the closest planet to the sun?",
+            "option1":"Mercury",
+            "option2":"Jupiter",
+            "option3":"Saturn",
+            "option4":"Neptune",
+            "correctAnswer":"option1"
+        },
+        {
+            "question":"What season is November in?",
+            "option1":"Spring",
+            "option2":"Summer",
+            "option3":"Fall",
+            "option4":"Winter",
+            "correctAnswer":"option3"
+        }
+    ]
+}
