@@ -8,8 +8,8 @@ import { QuestionsGetterService } from '../questions-getter.service';
   styleUrls: ['./test.component.css'],
 })
 export class TestComponent implements OnInit {
-  formHolder!: FormGroup;
   questions!: FormArray;
+  formHolder!: FormGroup;
   score: string = '';
 
   questionsList: any = [];
@@ -54,27 +54,31 @@ export class TestComponent implements OnInit {
     questionsObservable.subscribe((data) => {
       data.forEach((value) => this.questionsList.push(value));
       this.addAllQuestions();
+      console.log('questions');
+      console.log(this.questions.controls[0]);
     });
     console.log('Questions list');
     console.log(this.questionsList);
-    // debugger;
+
     // this.addAllQuestions();
   }
 
   addAllQuestions(): void {
-    debugger;
-    this.questionsList.forEach(() => this.addItem());
+    this.questionsList.forEach((_value: any, index: number) =>
+      this.addItem(index)
+    );
   }
 
-  createQuestion(): FormGroup {
+  addItem(index: number): void {
+    this.questions = this.formHolder?.get('questions') as FormArray;
+    this.questions.push(this.createQuestion(index));
+  }
+
+  createQuestion(index: number): FormGroup {
+    let questionTitle = 'question' + index;
     return this.formBuilder.group({
       question: ['', Validators.required],
     });
-  }
-
-  addItem(): void {
-    this.questions = this.formHolder?.get('questions') as FormArray;
-    this.questions.push(this.createQuestion());
   }
 
   checkAnswers() {
