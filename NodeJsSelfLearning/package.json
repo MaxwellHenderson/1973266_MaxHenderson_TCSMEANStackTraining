@@ -1,0 +1,19 @@
+{
+  "name": "nodejsselflearning",
+  "version": "12.16.2",
+  "description": "simple web app",
+  "main": "removeHtmlExtensionFromUrl.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxwellHenderson/1973266_MaxHenderson_TCSMEANStackTraining.git"
+  },
+  "author": "Max Henderson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MaxwellHenderson/1973266_MaxHenderson_TCSMEANStackTraining/issues"
+  },
+  "homepage": "https://github.com/MaxwellHenderson/1973266_MaxHenderson_TCSMEANStackTraining#readme"
+}

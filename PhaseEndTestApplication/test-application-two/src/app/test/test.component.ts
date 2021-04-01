@@ -57,8 +57,8 @@ export class TestComponent implements OnInit {
     let totalScore = 0;
     let maxScore = 0;
     this.questions.controls.forEach((control, index) => {
-      // let chosenAnswer = 'option1';
-      let chosenAnswer = control.value.question;
+      let chosenAnswer = 'option1';
+      // let chosenAnswer = control.value.question;
       let correctAnswer = this.questionsList[index].correctAnswer;
 
       if (chosenAnswer == correctAnswer) {
@@ -87,7 +87,7 @@ export class TestComponent implements OnInit {
       console.log('Given answer ' + control.value.question);
       console.log('Correct Answer ' + this.questionsList[index].correctAnswer);
     });
-
+    debugger;
     this.score = totalScore + '/' + maxScore;
   }
 }

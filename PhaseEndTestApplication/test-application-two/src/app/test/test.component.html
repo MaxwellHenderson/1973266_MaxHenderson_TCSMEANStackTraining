@@ -1,6 +1,6 @@
 <div>
     <h1>Test</h1>
-    <form [formGroup]="formHolder!">
+    <form [formGroup]="formHolder!" (ngSubmit)="checkAnswers()">
         {{formHolder.status}}
         <div class="container" formArrayName="questions"
             *ngFor="let question of formHolder?.get('questions')?.value; let i=index;">
