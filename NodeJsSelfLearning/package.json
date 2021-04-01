@@ -4,6 +4,7 @@
   "description": "simple web app",
   "main": "removeHtmlExtensionFromUrl.js",
   "scripts": {
+    "start":"node removeHtmlExtensionFromUrl.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
