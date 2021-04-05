@@ -41,8 +41,13 @@ class EmployeeDatabase {
       "How many records would you like to store?\n"
     );
 
+    //Used to store the newly added data
     let employeeData = new Array();
+
+    //For the number of records the user wants to add, get info and push into
+    //the created array
     for (let i = 0; i < numRecords; i++) {
+      debugger;
       console.log("\n");
       let id = this.input.questionInt("What is the id: ");
       let name = this.input.question("What is the name: ");
@@ -62,7 +67,6 @@ class EmployeeDatabase {
   }
 
   //Prints the current database to the console
-
   viewEmployees() {
     console.clear();
     if (!this.checkDB()) return;
