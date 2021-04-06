@@ -11,7 +11,11 @@ class EmployeeDatabase {
     while (running) {
       console.clear();
       console.log(
-        "**********************************\n|                                |\n| Welcome to employee management |\n|                                |\n**********************************\n"
+        `**********************************\n
+|                                |\n
+| Welcome to employee management |\n
+|                                |\n
+**********************************\n`
       );
       let menuChoice = this.input.keyInSelect(
         menuOptions,
@@ -71,11 +75,27 @@ class EmployeeDatabase {
     console.clear();
     if (!this.checkDB()) return;
     console.log(
-      "**********************\nCurrent employee data\n*********************\n\n"
+      `**********************\n
+Current employee data\n
+*********************\n\n
+Employee Id    Employee Name  Employee Salary
+=============================================`
     );
-    let data = this.fs.readFileSync("employeeData.json");
-    let dataJSON = JSON.parse(data.toString());
-    console.log(dataJSON);
+    let storedData = this.fs.readFileSync("employeeData.json").toString();
+    let storedArray = JSON.parse(storedData);
+    for (let record in storedArray) {
+      let id = storedArray[record].id.toString();
+      let name = storedArray[record].name;
+      let salary = storedArray[record].salary.toString();
+      let recordLine =
+        id +
+        this.printSpaces(15 - id.length) +
+        name +
+        this.printSpaces(15 - name.length) +
+        salary +
+        "\n";
+      console.log(recordLine);
+    }
     this.input.keyIn("Press any key to go back");
   }
 
@@ -135,6 +155,12 @@ class EmployeeDatabase {
     )
       return false;
     return true;
+  }
+
+  //Helper method to get certain number of spaces
+  printSpaces(numSpaces) {
+    let space = " ";
+    return space.repeat(numSpaces);
   }
 }
 
