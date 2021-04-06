@@ -8,10 +8,14 @@ import { QuestionsGetterService } from '../questions-getter.service';
   styleUrls: ['./test.component.css'],
 })
 export class TestComponent implements OnInit {
+  // This stores the FormGroups and FormControls used in the HTML.
+  // See the HTML document for the hierarchy of these objects
   questions!: FormArray;
+  //Just holds the questions FormArray
   formHolder!: FormGroup;
   score: string = '';
 
+  //Array of objects representing the test questions.
   questionsList: any = [];
 
   constructor(
@@ -20,12 +24,15 @@ export class TestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //Creates the formHolder FormGroup, and adds a new
+    //FormArray to it.
     this.formHolder = this.formBuilder.group({
       questions: this.formBuilder.array([]),
     });
 
     let questionsObservable = this.questionsGetter.getQuestions();
     questionsObservable.subscribe((data) => {
+      //Adds each question object from the external JSON file to the questions array
       data.forEach((value) => this.questionsList.push(value));
       this.addAllQuestions();
       console.log('questions');
@@ -35,12 +42,16 @@ export class TestComponent implements OnInit {
     console.log(this.questionsList);
   }
 
+  //For each question in the object array, creates a FormGroup with a
+  //FormControl, and adds it to the FormArray holder
   addAllQuestions(): void {
     this.questionsList.forEach((_value: any, index: number) =>
       this.addItem(index)
     );
   }
 
+  //These are a couple of helper functions for adding questions to the FormArray
+  //with their functionalities seperated out for ease of use.
   addItem(index: number): void {
     this.questions = this.formHolder?.get('questions') as FormArray;
     this.questions.push(this.createQuestion(index));
@@ -53,6 +64,17 @@ export class TestComponent implements OnInit {
     });
   }
 
+  //Currently, this function uses a hard coded value for the users
+  //chosen answer, as the FormControl elements are not changing their
+  //state.
+  //When working, it will loop through the FormArray, grabbing the
+  //chosen radio button and comparing that choice to the correct
+  //choice from the object array. It then changes the related span to
+  //indicate correct and incorrect choices, and tracks the score.
+  //I had this working at one point, but is one of the things that
+  //broke for no reason I can see.
+  //There is a debugger line that can be used to see the HTML being marked
+  //correctly, before all the spans are reset to their initial blank state
   checkAnswers() {
     let totalScore = 0;
     let maxScore = 0;
@@ -87,6 +109,9 @@ export class TestComponent implements OnInit {
       console.log('Given answer ' + control.value.question);
       console.log('Correct Answer ' + this.questionsList[index].correctAnswer);
     });
+
+    //Using this debugger line, it is possible to see the page after checking all
+    //the scores, but then the HTML seems to reset, but the score is still correct.
     debugger;
     this.score = totalScore + '/' + maxScore;
   }
