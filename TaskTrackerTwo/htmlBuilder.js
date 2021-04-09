@@ -23,15 +23,26 @@ class HTMLBuilder {
     </tr>`;
   }
 
-  buildEmptyTaskTable() {
-    return `<table>
+  buildTaskTable(taskList) {
+    let rows = new Array()
+    for(let task of taskList.values()){
+      debugger;
+      rows.push(this.buildTaskRow(task.userId,task.taskId,task.taskDesc,task.deadline))
+    }
+
+    let table = `<table>
     <tr>
         <th>User ID</th>
         <th>Task ID</th>
         <th>Task Description</th>
         <th>Deadline</th>
-    </tr>
-</table>`;
+    `
+    rows.forEach(row =>{
+      table = table + row
+    })
+
+
+    return table;
   }
 
   buildTaskForm() {
@@ -47,4 +58,4 @@ class HTMLBuilder {
   }
 }
 
-module.exports.HTMLBuilder = HTMLBuilder;
+module.exports = HTMLBuilder;

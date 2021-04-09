@@ -3,6 +3,10 @@ class DataDriver {
   tasksJSON = {};
   taskMap = new Map();
 
+  constructor(){
+    this.initDataDriver()
+  }
+
   initDataDriver() {
     this.retrieveTasks();
     this.taskMap = this.objectToMap(this.tasksJSON);
