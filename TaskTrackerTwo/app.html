@@ -1,11 +1,20 @@
+<!-- This was just used to prototype the HTML -->
+
+
+
 <form action="post">
     User ID <input type="number" name="userId" /> <br>
     Task ID <input type="number" name="taskID" /> <br>
     Task Description<br><textarea name="taskDesc"></textarea> <br>
     Deadline <input type="date" name="deadline" /> <br>
-    <input type="submit" value="Add Task">
-</form>
+    <input type="submit" value="Add Task"> <br><br>
 
+
+</form>
+<form action="deleteTask" method="post">
+    Enter task ID to delete input: <br>
+    <input type="number" name="taskId" /> <input type="submit" value="Delete Task">
+</form>
 
 <table>
     <tr>

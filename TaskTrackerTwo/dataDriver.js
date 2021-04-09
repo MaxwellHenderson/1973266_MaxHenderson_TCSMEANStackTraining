@@ -3,10 +3,11 @@ class DataDriver {
   tasksJSON = {};
   taskMap = new Map();
 
-  constructor(){
-    this.initDataDriver()
+  constructor() {
+    this.initDataDriver();
   }
 
+  //Gets the tasks from the .json file and turns them into a Map for use by the map
   initDataDriver() {
     this.retrieveTasks();
     this.taskMap = this.objectToMap(this.tasksJSON);
@@ -18,11 +19,14 @@ class DataDriver {
     return this.taskMap;
   }
 
+  //Checks whether the taskId is already in use
   taskExists(taskId) {
     return this.taskMap.has(taskId);
   }
 
+  //Returns true if task successfully added, false if task ID already exists
   addTask(empId, taskId, taskDesc, deadline) {
+    if (this.taskExists(taskId)) return false;
     let newTask = {
       empId: empId,
       taskId: taskId,
@@ -31,6 +35,7 @@ class DataDriver {
     };
     this.taskMap.set(taskId, newTask);
     this.storeTasks();
+    return true;
   }
 
   //Turns the object into a map for easy data setting and deleting
@@ -42,6 +47,7 @@ class DataDriver {
     return mp;
   }
 
+  //Removes the task from the map, and updates the .json file
   deleteTask(taskID) {
     this.taskMap.delete(taskID);
     this.storeTasks();
