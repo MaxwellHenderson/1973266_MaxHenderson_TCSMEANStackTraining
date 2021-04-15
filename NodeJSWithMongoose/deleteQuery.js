@@ -15,13 +15,11 @@ db.once("open", () => {
   let Product = obj.model("Product", ProductsSchema);
 
   //Creating reference using model
-  let p1 = new Product({ _id: 100, pname: "TV", price: 55000 });
-  p1.save((err, result) => {
+  Product.deleteOne({ _id: 100 }, (err, result) => {
     if (!err) {
-      console.log("record inserted successfully\n" + result);
-    } else {
-      console.log(err);
+      console.log("Record deleted successfully");
+      console.log(result);
     }
-    obj.disconnect(); //close the connection
+    obj.disconnect();
   });
 });

@@ -15,13 +15,18 @@ db.once("open", () => {
   let Product = obj.model("Product", ProductsSchema);
 
   //Creating reference using model
-  let p1 = new Product({ _id: 100, pname: "TV", price: 55000 });
-  p1.save((err, result) => {
-    if (!err) {
-      console.log("record inserted successfully\n" + result);
-    } else {
-      console.log(err);
+  Product.updateMany(
+    { _id: 101 },
+    { $set: { price: 23235 } },
+    (err, result) => {
+      if (!err) {
+        if (result.nModified > 0) {
+          console.log("Record updated");
+        } else {
+          console.log("Record not present");
+        }
+        obj.disconnect();
+      }
     }
-    obj.disconnect(); //close the connection
-  });
+  );
 });
