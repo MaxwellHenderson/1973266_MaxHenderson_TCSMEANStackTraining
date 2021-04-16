@@ -29,6 +29,7 @@ let updateCourse = (req, res) => {
   );
 };
 
+//This calls a helper function htmlManipulator to dynamically build the html table from the data from MongoDB
 let getCourses = async (res) => {
   let courses;
   await CourseModel.find({}, (err, result) => {

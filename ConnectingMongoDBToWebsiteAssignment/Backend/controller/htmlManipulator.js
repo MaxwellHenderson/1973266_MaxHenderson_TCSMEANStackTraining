@@ -2,14 +2,13 @@ let cheerio = require("cheerio");
 let fs = require("fs");
 let path = require("path");
 
+//This takes the array from MongoDB and uses cheerio to build the html string, dynamically building the table
 let updateCourseList = async (courses, res) => {
-  let htmlString = "asdgas";
   fs.readFile(
     path.resolve("Frontend/pages", "listCourses.html"),
     // "ConnectingMongoDBToWebsiteAssignment/Frontend/pages/listCourses.html",
     "utf8",
     (err, data) => {
-      console.log("reading");
       if (err) throw err;
       var $ = cheerio.load(data);
       courses.forEach((course) => {
