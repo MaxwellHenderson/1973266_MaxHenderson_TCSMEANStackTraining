@@ -20,12 +20,11 @@ let getProductById = (req, res) => {
 
 let storeProductDetails = (req, res) => {
   let product = new ProductModel({
-    _id: req.body.pid,
+    _id: req.body._id,
     pname: req.body.pname,
     price: req.body.price,
   });
-  let newProduct = new ProductModel(product);
-  newProduct.save((err, result) => {
+  product.save((err, result) => {
     if (!err) {
       res.send("Record stored successfully " + result);
     } else {
@@ -43,9 +42,30 @@ let deleteProductById = (req, res) => {
   });
 };
 
+let updateProductPrice = (req, res) => {
+  let pid = req.body.pid;
+  let updatedPrice = req.body.price;
+  ProductModel.updateMany(
+    { _id: pid },
+    { $set: { price: updatedPrice } },
+    (err, result) => {
+      if (!err) {
+        if (result.nModified > 0) {
+          res.send("Record updated succesfully");
+        } else {
+          res.send("Record is not available");
+        }
+      } else {
+        res.send("Error generated " + err);
+      }
+    }
+  );
+};
+
 module.exports = {
   getProductDetails,
   getProductById,
   storeProductDetails,
   deleteProductById,
+  updateProductPrice,
 };

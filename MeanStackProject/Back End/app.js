@@ -2,6 +2,7 @@
 let app = require("express")();
 let bodyParser = require("body-parser");
 let mongoose = require("mongoose");
+let cors = require("cors");
 
 //Database URL details
 let url = "mongodb://localhost:27017/meanstack";
@@ -9,6 +10,7 @@ let url = "mongodb://localhost:27017/meanstack";
 //Middleware enable data from post method. Reading the data coming in
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 //Database connection without warning
 const mongooseDbOption = {
@@ -25,4 +27,4 @@ var Product = require("./router/product.router.js");
 
 //Middleware
 app.use("/product", Product);
-app.listen(9090, () => console.log("Server listening..."));
+app.listen(9090, () => console.log("Server listening on port 9090"));

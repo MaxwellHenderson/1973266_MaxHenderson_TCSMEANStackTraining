@@ -1,24 +1,19 @@
+const { ResumeToken } = require("mongodb");
 let CourseModel = require("../model/course.model.js");
+let htmlManipulator = require("./htmlManipulator.js");
 
 let addCourse = (req, res) => {
-  console.log("Adding course");
-  console.log(req);
-
   let newCourse = new CourseModel(req);
-  console.log(newCourse);
   newCourse.save((err, result) => {
     if (!err) {
-      //   res.result = result;
-      console.log("Course added successfully");
-      console.log(result);
+      res(true);
     } else {
-      console.log(err);
+      res(false);
     }
   });
 };
 
 let updateCourse = (req, res) => {
-  console.log(req);
   CourseModel.updateOne(
     { _id: req.id },
     { $set: { cAmount: req.amount } },
@@ -34,16 +29,25 @@ let updateCourse = (req, res) => {
   );
 };
 
-let getCourses = async () => {
-  console.log("Getting courses");
+let getCourses = async (res) => {
   let courses;
   await CourseModel.find({}, (err, result) => {
     if (!err) {
-      //   console.log(result);
       courses = result;
     }
   });
-  return courses;
+  htmlManipulator.updateCourseList(courses, res);
 };
 
-module.exports = { addCourse, updateCourse, getCourses };
+let deleteCourse = (req, res) => {
+  console.log(req.query);
+  CourseModel.deleteOne({ _id: req.query.courseId }, (err, result) => {
+    if (!err) {
+      console.log("Succesful delete");
+    } else {
+      console.log("Error deleting" + err);
+    }
+  });
+};
+
+module.exports = { addCourse, updateCourse, getCourses, deleteCourse };

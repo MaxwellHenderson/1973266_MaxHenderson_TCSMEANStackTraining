@@ -1,23 +1,29 @@
 let cheerio = require("cheerio");
 let fs = require("fs");
+let path = require("path");
 
-let updateCourseList = (courses) => {
-  fs.readFileSync(
-    "ConnectingMongoDBToWebsiteAssignmentFrontendpageslistCourses.html",
+let updateCourseList = async (courses, res) => {
+  let htmlString = "asdgas";
+  fs.readFile(
+    path.resolve("Frontend/pages", "listCourses.html"),
+    // "ConnectingMongoDBToWebsiteAssignment/Frontend/pages/listCourses.html",
     "utf8",
     (err, data) => {
+      console.log("reading");
       if (err) throw err;
       var $ = cheerio.load(data);
       courses.forEach((course) => {
         let row = `<tr>
                         <td>${course._id}</td>
-                        <td>${cName}</td>
-                        <td>${cDesc}</td>
-                        <td>${cAmount}</td>
+                        <td>${course.cName}</td>
+                        <td>${course.cDesc}</td>
+                        <td>${course.cAmount}</td>
                     </tr>`;
         $(row).insertAfter(".thead");
-        $.html();
       });
+      res.send($.html());
     }
   );
 };
+
+module.exports = { updateCourseList };
