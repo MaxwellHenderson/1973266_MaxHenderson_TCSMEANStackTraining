@@ -25,8 +25,6 @@ io.on("connection", (socket) => {
         console.log(err);
       }
     });
-    console.log(timestamp);
-    console.log(msg.msg);
   });
 });
 
