@@ -28,4 +28,26 @@ export class ProductService {
       'http://localhost:9090/product/allProductDetails'
     );
   }
+
+  retrieveProductById(id: any) {
+    return this.http.get<Product[]>(
+      'http://localhost:9090/product/retrieveProductById/' + id
+    );
+  }
+
+  //By default all HttpClient methods return type is observable with json formatted data
+  deleteProductById(id: any): any {
+    return this.http.delete(
+      'http://localhost:9090/product/deleteProductById/' + id,
+      { responseType: 'text' }
+    );
+  }
+
+  updateProductPrice(productRef: any): any {
+    return this.http.put(
+      'http://localhost:9090/product/updateProductPrice',
+      productRef,
+      { responseType: 'text' }
+    );
+  }
 }

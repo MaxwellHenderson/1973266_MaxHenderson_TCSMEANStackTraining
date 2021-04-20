@@ -9,6 +9,7 @@ import { StoreProductComponent } from './store-product/store-product.component';
 import { RetrieveProductComponent } from './retrieve-product/retrieve-product.component';
 import { DeleteProductByIdComponent } from './delete-product-by-id/delete-product-by-id.component';
 import { UpdateProductPriceComponent } from './update-product-price/update-product-price.component';
+import { RetrieveByIdComponent } from './retrieve-by-id/retrieve-by-id.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UpdateProductPriceComponent } from './update-product-price/update-produ
     RetrieveProductComponent,
     DeleteProductByIdComponent,
     UpdateProductPriceComponent,
+    RetrieveByIdComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
